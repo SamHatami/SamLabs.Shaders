@@ -10,6 +10,7 @@ namespace SamLabs.Shaders
     /// </summary>
     public partial class MainWindow : Window
     {
+        ShaderRenderScene mainScene = new ShaderRenderScene();
         public MainWindow()
         {
             InitializeComponent();
@@ -20,12 +21,12 @@ namespace SamLabs.Shaders
                 MinorVersion = 3
             };
             OpenTkControl.Start(settings);
+            mainScene.Initialize();
         }
 
         private void OpenTkControl_OnRender(TimeSpan delta)
         {
-            GL.ClearColor(Color4.Blue);
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+            mainScene.Render();
         }
     }
 }
