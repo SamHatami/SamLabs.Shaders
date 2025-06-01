@@ -29,6 +29,7 @@ public class ShaderRenderScene
         new Vertex((0.0f, 0.5f), Color4.Red),
         new Vertex((0.58f, -0.5f), Color4.Green),
         new Vertex((-0.58f, -0.5f), Color4.Blue),
+        new Vertex((1f, 1f), Color4.Yellow),
     };
 
     private static readonly string VertexShaderSource =
@@ -41,7 +42,7 @@ public class ShaderRenderScene
 
         void main()
         {
-            gl_Position = vec4(vPosition, 0, 1);
+            gl_Position = vec4(vPosition, 0, 2);
             fColor = vColor;
         }
         ";
@@ -55,7 +56,7 @@ public class ShaderRenderScene
 
         void main()
         {
-            oColor = fColor;
+            oColor = fColor*2;
         }
         ";
 
@@ -137,6 +138,6 @@ public class ShaderRenderScene
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
         GL.UseProgram(Program);
-        GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
+        GL.DrawArrays(PrimitiveType.Triangles, 0, 4);
     }
 }
